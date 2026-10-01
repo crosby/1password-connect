@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+# Connect refuses to start unless its config folder is private to this user.
+mkdir -p /home/opuser/.op/data
+chmod 700 /home/opuser/.op /home/opuser/.op/data
+
 # The credentials file comes from a secret env var (base64 of 1password-credentials.json).
 : "${OP_CREDENTIALS_B64:?Set OP_CREDENTIALS_B64}"
 umask 077
